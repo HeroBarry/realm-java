@@ -18,7 +18,7 @@ import io.realm.entities.AllTypes;
 /**
  * Helper service for multi-processes support testing.
  */
-public class InterprocessService extends Service {
+public class RemoteProcessService extends Service {
 
     public abstract static class Step {
         public final int message;
@@ -49,13 +49,13 @@ public class InterprocessService extends Service {
     public static final String BUNDLE_KEY_ERROR = "error";
     private static Map<Integer, Step> stepMap = new HashMap<Integer, Step>();
 
-    private static InterprocessService thiz;
+    private static RemoteProcessService thiz;
     private Realm testRealm;
 
     private final Messenger messenger = new Messenger(new IncomingHandler());
     private Messenger client;
 
-    public InterprocessService() {
+    public RemoteProcessService() {
         if (thiz != null) {
             throw new RuntimeException("Only one instance is allowed!");
         }
@@ -70,7 +70,6 @@ public class InterprocessService extends Service {
     @Override
     public boolean onUnbind(Intent intent) {
         stopSelf();
-        System.exit(0);
         return super.onUnbind(intent);
     }
 

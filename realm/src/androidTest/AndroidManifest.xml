@@ -7,7 +7,7 @@
     <application>
         <uses-library android:name="android.test.runner" />
         <service
-            android:name=".services.InterprocessService"
+            android:name=".services.RemoteProcessService"
             android:enabled="true"
             android:exported="true"
             android:process=":remote" >
